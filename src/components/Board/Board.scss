@@ -1,0 +1,11 @@
+@import "../../styles.scss";
+
+.board {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+    margin: 10px;
+    border: 1px solid black;
+}

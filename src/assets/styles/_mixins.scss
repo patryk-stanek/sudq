@@ -1,0 +1,209 @@
+@mixin transition {
+    transition: all .1s ease-out;
+}
+
+@mixin container {
+    width: 100%;
+    height: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+@mixin main-button {
+    @include transition;
+    border: 2px solid $color-dark;
+    background-color: $color-dark;
+    color: $color-white;
+    padding: 10px 20px;
+    font-size: 15px;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 200px;
+    font-weight: 700;
+    margin-top: -2px;
+    @include box-shadow;
+    font-family: $font-quicksand;
+
+    @include respond(hover) {
+        &:hover,
+        &:active {
+            background-color: $color-orange;
+            border: 2px solid $color-orange;
+        }
+    }
+
+    &:active {
+        @include box-shadow-low;
+        background-color: $color-orange;
+        border: 2px solid $color-orange;
+    }
+}
+
+//-------------------------------------------SHADOWS
+
+
+@mixin box-shadow {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+@mixin box-shadow-up {
+    box-shadow: 0 -2px rgba(0,0,0,0.12), 0 -2px 7px rgba(0,0,0,0.24);
+}
+
+@mixin box-shadow-low {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.12);
+}
+
+//-------------------------------------------CLIP-PATH
+
+@mixin clip-down {
+    clip-path: polygon(
+      0 0,
+      100% 0,
+      100% 100%,
+      0 calc(100% - 150px)
+    );
+
+    @include respond(break-l) {
+        clip-path: polygon(
+          0 0,
+          100% 0,
+          100% 100%,
+          0 calc(100% - 75px)
+        );
+    }
+}
+
+@mixin clip-up {
+    clip-path: polygon(
+      0 0,
+      100% calc(0% + 150px),
+      100% 100%,
+      0 100%
+    );
+
+    @include respond(break-l) {
+        clip-path: polygon(
+          0 0,
+          100% calc(0% + 75px),
+          100% 100%,
+          0 100%
+        );
+    }
+}
+
+@mixin clip-down-up {
+    clip-path: polygon(
+      0 0,
+      100% calc(0% + 150px),
+      100% 100%,
+      0 calc(100% - 150px)
+    );
+
+    @include respond(break-l) {
+        clip-path: polygon(
+          0 0,
+          100% calc(0% + 75px),
+          100% 100%,
+          0 calc(100% - 75px)
+        );
+    }
+}
+
+//-------------------------------------------PAGE
+
+@mixin page-layout {
+    text-align: center;
+
+    &__header {
+        font-size: 45px;
+        font-weight: 100;
+        text-align: center;
+        padding: 10px 0;
+        margin: 0;
+        width: 100%;
+        background-color: $color-secondary-3;
+        color: $color-white;
+    }
+}
+
+@mixin page-padding {
+    padding: 35px 150px;
+
+    @include respond(break-xl) {
+        padding: 0 10px;
+    }
+
+    @include respond(break-m) {
+        text-align: justify;
+    }
+}
+
+@mixin section-padding {
+    padding: 100px 0;
+}
+
+//--------------------------------------------FLEX ROW
+
+@mixin flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+@mixin flex-row-s-col {
+    display: flex;
+    flex-direction: row;
+
+    @include respond(break-s) {
+        flex-direction: column;
+    }
+}
+
+@mixin flex-row-m-col {
+    display: flex;
+    flex-direction: row;
+
+    @include respond(break-m) {
+        flex-direction: column;
+    }
+}
+
+@mixin flex-row-justify {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+@mixin flex-row-align {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+//----------------------------------------------FLEX COL
+
+
+@mixin flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin flex-col-justify {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@mixin flex-col-align {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@mixin flex-col-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

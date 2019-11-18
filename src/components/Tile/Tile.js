@@ -6,7 +6,7 @@ export class Tile extends React.Component {
     render() {
         const tileValue = this.props.value;
         return (
-            <div>
+            <div className="tile">
                 <input 
                     type="number"
                     min="1"

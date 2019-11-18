@@ -23,7 +23,7 @@ export class Board extends React.Component {
         }
 
         return (
-            <div>
+            <div className="board">
                 {numberTiles}
             </div>
         )
