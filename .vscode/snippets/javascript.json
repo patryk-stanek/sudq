@@ -1,0 +1,61 @@
+{
+    "React class template": {
+      "prefix": "reactClassSnippet",
+      "body": [
+        "import React from \"react\";",
+        "",
+        "export class NAME extends React.Component {",
+        "    render() {",
+        "        return (",
+        "            <div>",
+        "",
+        "            </div>",
+        "        )",
+        "    }",
+        "}"
+      ],
+      "description": "Log error output to console"
+    },
+    "React const template": {
+        "prefix": "reactConstSnippet",
+        "body": [
+            "import React from \"react\";",
+            "",
+            "const NAME = props => (",
+            "    <div>",
+            "",
+            "    </div>",
+            ")",
+            "",
+            "export default NAME"
+        ]
+    },
+    "Add react-redux/connect import": {
+        "prefix": "reduxConnectSnippet",
+        "body": [
+            "import { connect } from \"react-redux\";"
+        ]
+    },
+    "Add font-awesome import": {
+        "prefix": "fontAwesomeSnippet",
+        "body": [
+            "import \"../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css\";"
+        ]
+    },
+    "mapStateToProps template": {
+        "prefix": "creatMapStateToProps",
+        "body": [
+            "const mapStateToProps = store => ({",
+            "",
+            "});"
+        ]
+    },
+    "mapDispatchToProps template": {
+        "prefix": "creatMapDispatchToProps",
+        "body": [
+            "const mapDispatchToProps = dispatch => ({",
+            "",
+            "});"
+        ]
+    }
+}
