@@ -16,10 +16,17 @@ export class Board extends React.Component {
     render() {
         let numberTiles = [];
 
-        if (this.props.data) {
-            numberTiles = this.props.data.map((number, index) => {
-                return <Tile value={number} action={this.numberHandler.bind(this)} id={index} key={index} />
-            })
+        if (this.props.gameData) {
+            numberTiles = this.props.gameData.map((number, index) => 
+                <Tile 
+                    value={number} 
+                    action={this.numberHandler.bind(this)} 
+                    id={index} 
+                    key={index} 
+                    init={this.props.initData}
+                    select={this.props.selected}
+                />
+            )
         }
 
         return (

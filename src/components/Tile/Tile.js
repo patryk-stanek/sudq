@@ -5,6 +5,9 @@ import "./Tile.scss";
 export class Tile extends React.Component {
     render() {
         const tileValue = this.props.value;
+        const arrayInitValue = this.props.init.split("");
+        const initValue = arrayInitValue[this.props.id];
+        
         return (
             <div className="tile">
                 <input 
@@ -14,8 +17,10 @@ export class Tile extends React.Component {
                     id={this.props.id}
                     value={tileValue === '.' ? '' : tileValue}
                     onChange={this.props.action}
-                    className={tileValue === "." ? "tile__enabled" : "tile__disabled"}
+                    className={initValue === "." ? "tile__enabled" : "tile__disabled"}
                     autoComplete="off"
+                    onFocus={() => this.props.select(this.props.id)}
+                    readOnly
                 />
             </div>
         )

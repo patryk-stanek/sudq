@@ -11,16 +11,27 @@ export class App extends React.Component {
     this.state = {
       gameBoard: [],
       gameDifficulty: '',
-      gameResult: ''
+      gameResult: '',
+      gameInitialBoard: [],
+      chosenNumber: '',
+      selectedTile: ''
     }
 
     this.solvedGameBoard = [];
     this.initialGameBoard = [];
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    this.newGame("easy");
   }
 
   newGame(difficulty) {
     const initialGameSetup = sudoku.generate(difficulty);
     const gameArray = initialGameSetup.split('');
+    console.log(difficulty);
 
     this.setState({
       gameBoard: gameArray,
@@ -50,13 +61,20 @@ export class App extends React.Component {
     this.solvedGameBoard === presentGame ? this.setState({gameResult: "Perfect!"}) : this.setState({gameResult: "Not yet!"})
   }
 
-  updateBoard(id, newVal) {
+  handleSelectedTile(id) {
+    console.log(id);
+    this.setState({
+      selectedTile: id
+    })
+  }
+
+  handleUpdateBoard(id, newVal) {
     const updatedBoard = this.state.gameBoard;
 
     updatedBoard[id] = newVal;
 
     this.setState({
-      gameBoard: this.updateBoard
+      gameBoard: updatedBoard
     });
   }
 
@@ -66,41 +84,43 @@ export class App extends React.Component {
   }
 
   handleChange(event) {
-    event.preventDefault();
     this.setState({
       gameDifficulty: event.target.value
     })
   }
 
   render() {
-      return (
-        <div className="main">
-          <form 
-            onSubmit={this.handleSubmit.bind(this)}
+    return (
+      <div className="main">
+        <form 
+          onSubmit={this.handleSubmit.bind(this)}
+        >
+          <select 
+            value={this.state.gameDifficulty}
+            onChange={this.handleChange}
           >
-            <select 
-              value={this.state.gameDifficulty}
-              onChange={this.handleChange}
-            >
-              <option value="easy">Easy</option>
-              <option value="medium">Medium</option>
-              <option value="hard">Hard</option>
-            </select>
-            <input type="submit" value="Start New Game" />
-          </form>
-          {
-            this.state.gameBoard && (
-              <Board 
-                data={this.state.gameBoard} 
-                updateBoard={this.updateBoard.bind(this)}
-              />
-            )
-          }
-          <button onClick={this.solveGame.bind(this)}>Solve</button>
-          <button onClick={this.resetGame.bind(this)}>Reset</button>
-          <button onClick={this.checkGame.bind(this)}>Check</button>
-          <span>{this.state.gameResult}</span>
-        </div>
-      )
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+          <input type="submit" value="Start New Game" />
+        </form>
+        {
+          this.state.gameBoard && (
+            <Board 
+              gameData={this.state.gameBoard}
+              initData={this.initialGameBoard}
+              updateBoard={this.handleUpdateBoard.bind(this)}
+              selected={this.handleSelectedTile.bind(this)}
+            />
+          )
+        }
+        <button onClick={this.solveGame.bind(this)}>Solve</button>
+        <button onClick={this.resetGame.bind(this)}>Reset</button>
+        <button onClick={this.checkGame.bind(this)}>Check</button>
+        <span>{this.state.gameResult}</span>
+        <span>selected tile: {this.state.selectedTile}</span>
+      </div>
+    )
   }
 }
