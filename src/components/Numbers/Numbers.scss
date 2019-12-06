@@ -1,0 +1,43 @@
+@import "../../styles.scss";
+
+.numbers {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &__box {
+        margin: 0 auto;
+    }
+
+    & button {
+        @include transition;
+        cursor: pointer;
+        border: 1px solid $color-dark;
+        color: $color-dark;
+        background-color: transparent;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        font-size: 20px;
+        font-family: $font-main;
+        font-weight: 700;
+        margin: 5px 20px;
+        
+        &:focus {
+            outline: none;
+        }
+
+        &:hover,
+        &:active {
+            border: 1px solid $color-red;
+            background-color: $color-red;
+            color: $color-white;
+        }
+    }
+
+    &__clean {
+        font-family: Arial;
+        font-size: 18px;
+    }
+}

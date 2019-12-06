@@ -16,7 +16,7 @@ export class App extends React.Component {
       gameBoard: [],
       gameDifficulty: '',
       gameResult: '',
-      chosenNumber: '',
+      selectedNumber: '',
       selectedTile: ''
     }
 
@@ -36,7 +36,7 @@ export class App extends React.Component {
       gameBoard: gameArray,
       gameDifficulty: difficulty,
       gameResult: '',
-      chosenNumber: '',
+      selectedNumber: '',
       selectedTile: ''
     });
 
@@ -69,7 +69,7 @@ export class App extends React.Component {
       gameBoard: [],
       gameDifficulty: '',
       gameResult: '',
-      chosenNumber: '',
+      selectedNumber: '',
       selectedTile: ''
     })
   }
@@ -82,7 +82,7 @@ export class App extends React.Component {
 
   handleChosenNumber(number) {
     this.setState({
-      chosenNumber: number
+      selectedNumber: number
     })
     this.handleUpdateBoard(this.state.selectedTile, number)
   }
@@ -170,7 +170,7 @@ export class App extends React.Component {
 
   renderGameScreen() {
     return (
-      <div>
+      <React.Fragment>
         {
           this.state.gameBoard && (
             <Board 
@@ -183,7 +183,7 @@ export class App extends React.Component {
           )
         }
         <Numbers 
-          numberOption={this.handleChosenNumber.bind(this)}
+          chosenNumber={this.handleChosenNumber.bind(this)}
         />
         <Controls 
           reset={this.resetGame.bind(this)}
@@ -191,11 +191,7 @@ export class App extends React.Component {
           solve={this.solveGame.bind(this)}
           quit={this.quitGame.bind(this)}
         />
-        {/* <button onClick={this.solveGame.bind(this)}>Solve</button>
-        <button onClick={this.resetGame.bind(this)}>Reset</button>
-        <button onClick={this.checkGame.bind(this)}>Check</button>
-        <button onClick={this.quitGame.bind(this)}>Quit</button> */}
-      </div>
+      </React.Fragment>
     )
   }
 

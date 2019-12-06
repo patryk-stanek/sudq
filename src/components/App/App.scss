@@ -12,12 +12,12 @@
   justify-content: center;
   background-color: $color-white;
   border-radius: 4px;
-  position: relative;
   font-family: $font-raleway;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 
   &__header {
-    position: absolute;
-    top: 50px;
     cursor: pointer;
     font-size: 65px;
     font-weight: 100;
@@ -25,7 +25,7 @@
   }
 
   &__span {
-    color: $color-blue;
+    color: $color-red;
   }
 
   &__form {
@@ -58,15 +58,15 @@
   }
 
   &__option:checked + &__label {
-    border: 1px solid $color-blue;
-    background-color: $color-blue;
+    border: 1px solid $color-red;
+    background-color: $color-red;
     color: $color-white;
   }
 
   &__submit {
     border: none;
     background-color: transparent;
-    margin: 50px auto -50px;
+    margin: 50px auto;
     display: block;
     cursor: pointer;
         
@@ -80,11 +80,11 @@
     font-size: 50px;
     color: $color-white;
     -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: $color-blue;
+    -webkit-text-stroke-color: $color-red;
 
     &:hover,
     &:active {
-      color: $color-blue;
+      color: $color-red;
     }
   }
 }
