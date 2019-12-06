@@ -1,0 +1,30 @@
+@import "../../styles.scss";
+
+.controls {
+    @include flex-row;
+    justify-content: space-evenly;
+    margin-top: 50px;
+    margin-bottom: -50px;
+
+    &__button {
+        cursor: pointer;
+        border: none;
+        background-color: transparent;
+    }
+
+    &__icon {
+        @include transition;
+        color: $color-dark;
+        font-size: 25px;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        line-height: 60px;
+
+        &:hover,
+        &:active {
+            background-color: $color-blue;
+            color: $color-white;
+        }
+    }
+}

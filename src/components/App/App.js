@@ -1,7 +1,8 @@
 import React from "react";
 import sudoku from "sudoku-umd";
-import {Board} from "../Board/Board";
-import {Controls} from "../Controls/Controls";
+import { Board } from "../Board/Board";
+import { Numbers } from "../Numbers/Numbers";
+import { Controls } from "../Controls/Controls";
 import "../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
 
 import "./App.scss";
@@ -181,18 +182,19 @@ export class App extends React.Component {
             />
           )
         }
-        <Controls 
+        <Numbers 
           numberOption={this.handleChosenNumber.bind(this)}
         />
-        <button onClick={this.solveGame.bind(this)}>Solve</button>
+        <Controls 
+          reset={this.resetGame.bind(this)}
+          check={this.checkGame.bind(this)}
+          solve={this.solveGame.bind(this)}
+          quit={this.quitGame.bind(this)}
+        />
+        {/* <button onClick={this.solveGame.bind(this)}>Solve</button>
         <button onClick={this.resetGame.bind(this)}>Reset</button>
         <button onClick={this.checkGame.bind(this)}>Check</button>
-        <button onClick={this.quitGame.bind(this)}>Quit</button>
-        <span>{this.state.gameResult}</span>
-        <br/>
-        <span>selected tile: {this.state.selectedTile}</span>
-        <br />
-        <span>difficulty: {this.state.difficulty}</span>
+        <button onClick={this.quitGame.bind(this)}>Quit</button> */}
       </div>
     )
   }
