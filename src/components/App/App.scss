@@ -12,4 +12,78 @@
   justify-content: center;
   background-color: $color-white;
   border-radius: 4px;
+  position: relative;
+  font-family: $font-raleway;
+
+  &__header {
+    position: absolute;
+    top: 10px;
+    font-size: 65px;
+    font-weight: 100;
+    text-transform: uppercase;
+  }
+
+  &__span {
+    color: $color-blue;
+  }
+
+  &__form {
+    width: 50%;
+  }
+
+  &__option {
+    display: none;
+  }
+
+  &__label {
+    @include transition;
+    cursor: pointer;
+    margin: 5px 0;
+    display: block;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 4px;
+    border: 1px solid $color-light;
+    color: $color-light;
+    padding: 15px;
+    text-transform: uppercase;
+    font-weight: 700;
+
+    &:hover,
+    &:active {
+      background-color: $color-light;
+      color: $color-white;
+    }
+  }
+
+  &__option:checked + &__label {
+    border: 1px solid $color-blue;
+    background-color: $color-blue;
+    color: $color-white;
+  }
+
+  &__submit {
+    border: none;
+    background-color: transparent;
+    margin: 50px auto -50px;
+    display: block;
+    cursor: pointer;
+        
+    &:focus {
+        outline: none;
+    }
+  }
+
+  &__icon {
+    @include transition;
+    font-size: 50px;
+    color: $color-white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: $color-blue;
+
+    &:hover,
+    &:active {
+      color: $color-blue;
+    }
+  }
 }

@@ -1,22 +1,44 @@
+@import "../../styles.scss";
+
 .tile {
-    flex-basis: calc(100% / 9 - 4px);
+    flex-basis: calc(100% / 9);
+    flex-basis: 50px;
     height: 50px;
-    margin: 2px;
+
+    &:nth-child(3n):not(:nth-child(9n)){
+        border-right: 2px solid #000;
+    }
+
+    &:nth-child(n+19):nth-child(-n+27) {
+        border-bottom: 2px solid #000;
+    }
+
+    &:nth-child(n+46):nth-child(-n+54) {
+        border-bottom: 2px solid #000;
+    }
 
     & input {
+        @include transition;
+        cursor: pointer;
+        font-family: $font-main;
         width: 100%;
         height: 100%;
         text-align: center;
         font-size: 20px;
-        border: 1px solid red;
+        font-weight: 700;
+        border: 1px solid $color-light-2;
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
-        user-select: none;   
+        user-select: none;  
+        
+        &:focus {
+            outline: none;
+        }
     }
 
     &__enabled {
-        background-color: rgba(green, .2);
+        color: $color-blue;
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
@@ -28,6 +50,12 @@
     }
 
     &__disabled {
-        background-color: rgba(red, .2);
+        cursor: default !important;
+        color: $color-dark-2;
+    }
+
+    &__selected {
+        color: $color-blue;
+        border: 1px solid $color-blue !important;
     }
 }

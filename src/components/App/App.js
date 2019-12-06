@@ -1,6 +1,8 @@
 import React from "react";
 import sudoku from "sudoku-umd";
 import {Board} from "../Board/Board";
+import {Controls} from "../Controls/Controls";
+import "../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
 
 import "./App.scss";
 
@@ -9,10 +11,10 @@ export class App extends React.Component {
     super(props);
 
     this.state = {
+      gameOn: false,
       gameBoard: [],
       gameDifficulty: '',
       gameResult: '',
-      gameInitialBoard: [],
       chosenNumber: '',
       selectedTile: ''
     }
@@ -24,18 +26,17 @@ export class App extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount() {
-    this.newGame("easy");
-  }
-
   newGame(difficulty) {
     const initialGameSetup = sudoku.generate(difficulty);
     const gameArray = initialGameSetup.split('');
-    console.log(difficulty);
 
     this.setState({
+      gameOn: true,
       gameBoard: gameArray,
-      gameDifficulty: difficulty
+      gameDifficulty: difficulty,
+      gameResult: '',
+      chosenNumber: '',
+      selectedTile: ''
     });
 
     this.solvedGameBoard = sudoku.solve(initialGameSetup);
@@ -61,16 +62,32 @@ export class App extends React.Component {
     this.solvedGameBoard === presentGame ? this.setState({gameResult: "Perfect!"}) : this.setState({gameResult: "Not yet!"})
   }
 
+  quitGame() {
+    this.setState({
+      gameOn: false,
+      gameBoard: [],
+      gameDifficulty: '',
+      gameResult: '',
+      chosenNumber: '',
+      selectedTile: ''
+    })
+  }
+
   handleSelectedTile(id) {
-    console.log(id);
     this.setState({
       selectedTile: id
     })
   }
 
+  handleChosenNumber(number) {
+    this.setState({
+      chosenNumber: number
+    })
+    this.handleUpdateBoard(this.state.selectedTile, number)
+  }
+
   handleUpdateBoard(id, newVal) {
     const updatedBoard = this.state.gameBoard;
-
     updatedBoard[id] = newVal;
 
     this.setState({
@@ -89,22 +106,70 @@ export class App extends React.Component {
     })
   }
 
-  render() {
+  renderDiffcultyScreen() {
     return (
-      <div className="main">
-        <form 
-          onSubmit={this.handleSubmit.bind(this)}
-        >
-          <select 
-            value={this.state.gameDifficulty}
+      <form 
+        className="main__form"
+        onSubmit={this.handleSubmit.bind(this)}
+      >
+        <div>
+          <input
+            name="difficulty"
+            className="main__option" 
+            type="radio"
+            value="easy"
+            id="option-easy"
             onChange={this.handleChange}
+            defaultChecked
+          />
+          <label 
+            className="main__label"
+            htmlFor="option-easy"
           >
-            <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Hard</option>
-          </select>
-          <input type="submit" value="Start New Game" />
-        </form>
+            Easy
+          </label>
+          <input
+            name="difficulty"
+            className="main__option" 
+            type="radio"
+            value="medium"
+            id="option-medium"
+            onChange={this.handleChange}
+          />
+          <label 
+            className="main__label"
+            htmlFor="option-medium"
+          >
+            Medium
+          </label>
+          <input
+            name="difficulty"
+            className="main__option" 
+            type="radio"
+            value="hard"
+            id="option-hard"
+            onChange={this.handleChange}
+          />
+          <label 
+            className="main__label"
+            htmlFor="option-hard"
+          >
+            Hard
+          </label>
+        </div>
+        <button
+          type="submit"
+          className="main__submit"
+        >
+          <i className="fas fa-play main__icon"></i>
+        </button>
+      </form>
+    )
+  }
+
+  renderGameScreen() {
+    return (
+      <div>
         {
           this.state.gameBoard && (
             <Board 
@@ -112,14 +177,35 @@ export class App extends React.Component {
               initData={this.initialGameBoard}
               updateBoard={this.handleUpdateBoard.bind(this)}
               selected={this.handleSelectedTile.bind(this)}
+              selectedTile={this.state.selectedTile}
             />
           )
         }
+        <Controls 
+          numberOption={this.handleChosenNumber.bind(this)}
+        />
         <button onClick={this.solveGame.bind(this)}>Solve</button>
         <button onClick={this.resetGame.bind(this)}>Reset</button>
         <button onClick={this.checkGame.bind(this)}>Check</button>
+        <button onClick={this.quitGame.bind(this)}>Quit</button>
         <span>{this.state.gameResult}</span>
+        <br/>
         <span>selected tile: {this.state.selectedTile}</span>
+        <br />
+        <span>difficulty: {this.state.difficulty}</span>
+      </div>
+    )
+  }
+
+  render() {
+    const screen = this.state.gameOn === true ? this.renderGameScreen() : this.renderDiffcultyScreen();
+
+    return (
+      <div className="main">
+        <h1 className="main__header" onClick={this.quitGame.bind(this)}>
+          Sud<span className="main__span">q</span>
+        </h1>
+        {screen}
       </div>
     )
   }

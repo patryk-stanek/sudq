@@ -25,6 +25,7 @@ export class Board extends React.Component {
                     key={index} 
                     init={this.props.initData}
                     select={this.props.selected}
+                    selectedTile={this.props.selectedTile}
                 />
             )
         }
