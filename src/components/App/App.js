@@ -1,5 +1,7 @@
 import React from "react";
 import sudoku from "sudoku-umd";
+import Fade from 'react-reveal/Fade';
+
 import { Board } from "../Board/Board";
 import { Numbers } from "../Numbers/Numbers";
 import { Controls } from "../Controls/Controls";
@@ -113,57 +115,61 @@ export class App extends React.Component {
         className="main__form"
         onSubmit={this.handleSubmit.bind(this)}
       >
-        <div>
-          <input
-            name="difficulty"
-            className="main__option" 
-            type="radio"
-            value="easy"
-            id="option-easy"
-            onChange={this.handleChange}
-            defaultChecked
-          />
-          <label 
-            className="main__label"
-            htmlFor="option-easy"
+        <Fade delay={150}>
+          <div>
+            <input
+              name="difficulty"
+              className="main__option" 
+              type="radio"
+              value="easy"
+              id="option-easy"
+              onChange={this.handleChange}
+              defaultChecked
+            />
+            <label 
+              className="main__label"
+              htmlFor="option-easy"
+            >
+              Easy
+            </label>
+            <input
+              name="difficulty"
+              className="main__option" 
+              type="radio"
+              value="medium"
+              id="option-medium"
+              onChange={this.handleChange}
+            />
+            <label 
+              className="main__label"
+              htmlFor="option-medium"
+            >
+              Medium
+            </label>
+            <input
+              name="difficulty"
+              className="main__option" 
+              type="radio"
+              value="hard"
+              id="option-hard"
+              onChange={this.handleChange}
+            />
+            <label 
+              className="main__label"
+              htmlFor="option-hard"
+            >
+              Hard
+            </label>
+          </div>
+        </Fade>
+        <Fade bottom delay={300}>
+          <button
+            type="submit"
+            className="main__submit"
           >
-            Easy
-          </label>
-          <input
-            name="difficulty"
-            className="main__option" 
-            type="radio"
-            value="medium"
-            id="option-medium"
-            onChange={this.handleChange}
-          />
-          <label 
-            className="main__label"
-            htmlFor="option-medium"
-          >
-            Medium
-          </label>
-          <input
-            name="difficulty"
-            className="main__option" 
-            type="radio"
-            value="hard"
-            id="option-hard"
-            onChange={this.handleChange}
-          />
-          <label 
-            className="main__label"
-            htmlFor="option-hard"
-          >
-            Hard
-          </label>
-        </div>
-        <button
-          type="submit"
-          className="main__submit"
-        >
-          <i className="fas fa-play main__icon"></i>
-        </button>
+            <i className="fas fa-play main__icon"></i>
+          </button>
+        </Fade>
       </form>
     )
   }
@@ -200,9 +206,11 @@ export class App extends React.Component {
 
     return (
       <div className="main">
-        <h1 className="main__header" onClick={this.quitGame.bind(this)}>
-          Sud<span className="main__span">q</span>
-        </h1>
+        <Fade top>
+          <h1 className="main__header" onClick={this.quitGame.bind(this)}>
+            Sud<span className="main__span">q</span>
+          </h1>
+        </Fade>
         {screen}
       </div>
     )

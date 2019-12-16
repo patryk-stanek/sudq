@@ -1,4 +1,5 @@
 import React from "react";
+import Fade from 'react-reveal/Fade';
 import {Tile} from "../Tile/Tile";
 import "./Board.scss";
 
@@ -31,9 +32,11 @@ export class Board extends React.Component {
         }
 
         return (
-            <div className="board">
-                {numberTiles}
-            </div>
+            <Fade>
+                <div className="board">
+                    {numberTiles}
+                </div>
+            </Fade>
         )
     }
 }

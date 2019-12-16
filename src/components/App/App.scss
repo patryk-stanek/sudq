@@ -18,6 +18,7 @@
   justify-content: space-evenly;
 
   &__header {
+    @include transition;
     cursor: pointer;
     font-size: 65px;
     font-weight: 100;
