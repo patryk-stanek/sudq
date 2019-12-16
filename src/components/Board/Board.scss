@@ -1,8 +1,7 @@
 @import "../../styles.scss";
 
 .board {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    max-width: 450px;
+    display: grid;
+    grid-template-columns: repeat(9, 50px);
+    grid-template-rows: repeat(9, 50px);
 }

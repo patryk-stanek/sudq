@@ -34,8 +34,6 @@ export class Numbers extends React.Component {
                         >
                             5
                         </button>
-                    </div>
-                    <div className="numbers__box">
                         <button 
                             onClick={() => this.props.chosenNumber(6)}
                         >

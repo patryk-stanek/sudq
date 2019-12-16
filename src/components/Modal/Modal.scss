@@ -1,0 +1,57 @@
+@import "../../styles.scss";
+
+.modal {
+    @include flex-col-center;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba($color-black, .5);
+    backdrop-filter: blur(2px);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    font-family: $font-raleway;
+
+    &__box {
+        @include flex-col-center;
+        padding: 50px;
+        background-color: $color-white;
+
+        @include respond(break-s) {
+            width: 100%;
+        }
+
+        & span {
+            font-size: 20px;
+            font-weight: 300;
+            margin-bottom: 50px;
+        }
+
+        & button {
+            @include transition;
+            cursor: pointer;
+            border: 1px solid $color-dark;
+            color: $color-dark;
+            background-color: transparent;
+            width: 100%;
+            border-radius: 4px;
+            line-height: 50px;
+            font-size: 16px;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin: 5px 0;
+            
+            &:focus {
+                outline: none;
+            }
+    
+            &:hover,
+            &:active {
+                border: 1px solid $color-red;
+                background-color: $color-red;
+                color: $color-white;
+            }
+        }
+    }
+}
