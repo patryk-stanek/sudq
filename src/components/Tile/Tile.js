@@ -23,20 +23,21 @@ export class Tile extends React.Component {
         return (
             <div className="tile">
                 <div>
-                <Fade delay={tileValue * 100}>
-                    <input 
-                        type="text"
-                        min="1"
-                        max="9"
-                        id={this.props.id}
-                        value={tileValue === '.' ? '' : tileValue}
-                        onChange={this.props.action}
-                        className={classValue}
-                        autoComplete="off"
-                        onFocus={() => this.props.select(this.props.id)}
-                        readOnly
-                    />
-                </Fade></div>
+                    <Fade delay={tileValue * 100}>
+                        <input 
+                            type="text"
+                            min="1"
+                            max="9"
+                            id={this.props.id}
+                            value={tileValue === '.' ? '' : tileValue}
+                            onChange={this.props.action}
+                            className={classValue}
+                            autoComplete="off"
+                            onFocus={() => this.props.select(this.props.id)}
+                            readOnly
+                        />
+                    </Fade>
+                </div>
             </div>
         )
     }

@@ -15,9 +15,11 @@ export class App extends React.Component {
 
     this.state = {
       gameOn: false,
+      usedSolveGame: false,
+      usedCheckGame: false,
+      gameWon: false,
       gameBoard: [],
       gameDifficulty: '',
-      gameResult: '',
       selectedNumber: '',
       selectedTile: ''
     }
@@ -35,9 +37,11 @@ export class App extends React.Component {
 
     this.setState({
       gameOn: true,
+      usedSolveGame: false,
+      usedCheckGame: false,
+      gameWon: false,
       gameBoard: gameArray,
       gameDifficulty: difficulty,
-      gameResult: '',
       selectedNumber: '',
       selectedTile: ''
     });
@@ -49,7 +53,8 @@ export class App extends React.Component {
   solveGame() {
     const solvedGame = this.solvedGameBoard.split('');
     this.setState({
-      gameBoard: solvedGame
+      gameBoard: solvedGame,
+      usedSolveGame: true
     })
   }
 
@@ -62,15 +67,20 @@ export class App extends React.Component {
 
   checkGame() {
     const presentGame = this.state.gameBoard.join('');
-    this.solvedGameBoard === presentGame ? this.setState({gameResult: "Perfect!"}) : this.setState({gameResult: "Not yet!"})
+    this.setState({
+      usedCheckGame: true
+    })
+    this.solvedGameBoard === presentGame ? this.setState({gameWon: true}) : this.setState({gameWon: false});
   }
 
   quitGame() {
     this.setState({
       gameOn: false,
+      usedSolveGame: false,
+      usedCheckGame: false,
+      gameWon: false,
       gameBoard: [],
       gameDifficulty: '',
-      gameResult: '',
       selectedNumber: '',
       selectedTile: ''
     })
@@ -203,6 +213,19 @@ export class App extends React.Component {
 
   render() {
     const screen = this.state.gameOn === true ? this.renderGameScreen() : this.renderDiffcultyScreen();
+    let resultPopUpClass = "";
+    let resultPopUpText = "";
+
+    if (this.state.usedCheckGame === true && this.state.gameWon === true && this.state.usedSolveGame === false) {
+      resultPopUpClass = 'main__score--won';
+      resultPopUpText = "You won!";
+    } else if (this.state.usedCheckGame === true && this.state.gameWon === false && this.state.usedSolveGame === false) {
+      resultPopUpClass = "main__score--failed";
+      resultPopUpText = "Not yet!"
+    } else if (this.state.usedCheckGame === true & this.state.usedSolveGame === true) {
+      resultPopUpClass = "main__score--solved";
+      resultPopUpText = "You didn't solve this board..."
+    }
 
     return (
       <div className="main">
@@ -210,6 +233,9 @@ export class App extends React.Component {
           <h1 className="main__header" onClick={this.quitGame.bind(this)}>
             Sud<span className="main__span">q</span>
           </h1>
+        </Fade>
+        <Fade>
+          <span className={`main__score ${resultPopUpClass}`}>{resultPopUpText}</span>
         </Fade>
         {screen}
       </div>

@@ -16,6 +16,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  position: relative;
 
   &__header {
     @include transition;
@@ -86,6 +87,35 @@
     &:hover,
     &:active {
       color: $color-red;
+    }
+  }
+
+  &__score {
+    color: $color-white;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 700;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    padding: 3px 0;
+    display: none;
+
+    &--won {
+      display: block;
+      background-color: $color-green;
+    }
+
+    &--failed {
+      display: block;
+      background-color: $color-purple;
+    }
+
+    &--solved {
+      display: block;
+      background-color: $color-red;
     }
   }
 }

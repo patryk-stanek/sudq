@@ -52,20 +52,22 @@ export class Controls extends React.Component {
     };
 
     render() {
-        let methodMan;
+        let chosenMethod;
         if (this.state.option === 1) {
-            methodMan = this.props.reset
+            chosenMethod = this.props.reset
         } else if (this.state.option === 2) {
-            methodMan = this.props.check
+            chosenMethod = this.props.check
         } else if (this.state.option === 3) {
-            methodMan = this.props.solve
+            chosenMethod = this.props.solve
         } else if (this.state.option === 4) {
-            methodMan = this.props.quit
+            chosenMethod = this.props.quit
         } else {
-            methodMan = '';
+            chosenMethod = '';
         }
 
-        const modalBoxConfirmation = this.state.modal === true ? <ModalBox  description={this.state.description} handleClosingModal={this.handleClosingModal.bind(this)} method={methodMan}/> : "";
+        const modalBox = <ModalBox  description={this.state.description} handleClosingModal={this.handleClosingModal.bind(this)} method={chosenMethod}/>
+
+        const modalBoxConfirmation = this.state.modal === true ? modalBox : "";
 
         return (
             <Fade delay={300}>
