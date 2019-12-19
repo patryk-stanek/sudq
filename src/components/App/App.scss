@@ -25,7 +25,7 @@
   @include respond(break-l) {
     @include box-shadow;
     max-width: 100%;
-    height: 100vh;
+    min-height: -webkit-fill-available;
     margin: 0;
     justify-content: space-around;
     border-radius: 0px;
@@ -127,6 +127,11 @@
     border-top-right-radius: 4px;
     padding: 3px 0;
     display: none;
+
+    @include respond(break-l) {
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+    }
 
     &--won {
       display: block;
