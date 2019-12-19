@@ -4,4 +4,24 @@
     display: grid;
     grid-template-columns: repeat(9, 50px);
     grid-template-rows: repeat(9, 50px);
+
+    @include respond(break-xl) {
+
+    }
+  
+    @include respond(break-l) {
+    }
+  
+    @include respond(break-m) {
+    }
+  
+    @include respond(break-s) {
+        grid-template-columns: repeat(9, calc(100vw / 9));
+        grid-template-rows: repeat(9, calc(100vw / 9));
+
+    }
+  
+    @include respond(break-xs) {
+
+    }
 }

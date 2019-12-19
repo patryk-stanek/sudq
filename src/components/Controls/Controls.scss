@@ -29,5 +29,11 @@
             background-color: $color-red;
             color: $color-white;
         }
+  
+        @include respond(break-s) {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+        }
     }
 }
