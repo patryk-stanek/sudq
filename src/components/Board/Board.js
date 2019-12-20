@@ -9,6 +9,7 @@ export class Board extends React.Component {
         const tileId = event.target.id;
         const maxValue = 9;
         const maxLength = 1;
+        //Locking value range
         const newVal = tileValue <= maxValue ? tileValue : parseInt(tileValue.toString().substring(0, maxLength));
 
         this.props.updateBoard(tileId, newVal);

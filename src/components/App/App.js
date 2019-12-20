@@ -1,7 +1,6 @@
 import React from "react";
 import sudoku from "sudoku-umd";
 import Fade from 'react-reveal/Fade';
-
 import { Board } from "../Board/Board";
 import { Numbers } from "../Numbers/Numbers";
 import { Controls } from "../Controls/Controls";
@@ -32,7 +31,9 @@ export class App extends React.Component {
   }
 
   newGame(difficulty) {
+    //Creating game board based on chosen difficulty
     const initialGameSetup = sudoku.generate(difficulty);
+    //Spliting numbers from board
     const gameArray = initialGameSetup.split('');
 
     this.setState({
@@ -46,6 +47,7 @@ export class App extends React.Component {
       selectedTile: ''
     });
 
+    //Creating solved game board for checking purpose
     this.solvedGameBoard = sudoku.solve(initialGameSetup);
     this.initialGameBoard = initialGameSetup;
   }
