@@ -23,4 +23,19 @@ $break-xs: 320px;
     @if $breakpoint == hover {
         @media only screen and (min-width: $break-xl) { @content };
     }
+    @if $breakpoint == horizon-xs {
+        @media only screen and (max-width: $break-xs) and (orientation: landscape) { @content };
+    }
+    @if $breakpoint == horizon-s {
+        @media only screen and (max-width: $break-s) and (orientation: landscape) { @content };
+    }
+    @if $breakpoint == horizon-m {
+        @media only screen and (max-width: $break-m) and (orientation: landscape) { @content };
+    }
+    @if $breakpoint == horizon-l {
+        @media only screen and (max-width: $break-l) and (orientation: landscape) { @content };
+    }
+    @if $breakpoint == horizon-xl {
+        @media only screen and (max-width: $break-xl) and (orientation: landscape) { @content };
+    }
 }

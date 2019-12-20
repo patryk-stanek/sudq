@@ -5,6 +5,10 @@
     justify-content: space-evenly;
     width: 100%;
 
+    @include respond(horizon-xl) {
+        flex-direction: column;
+    }
+
     &__button {
         cursor: pointer;
         border: none;
